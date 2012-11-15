@@ -1,0 +1,24 @@
+# Contributor: Bruno Adele <bruno.adele@jesuislibre.org>
+
+pkgname=jsl-tools
+pkgver=0.1
+pkgrel=1
+pkgdesc="Diverse tools from jesuislibre website"
+arch=('i686' 'x86_64')
+url="http://code.google.com/p/jsl-tools/"
+license=('GPL')
+depends=('fslint')
+source=(http://jsl-tools.googlecode.com/files/$pkgname-$pkgver.tgz)
+
+build() {
+  cd "$startdir/src"
+  tar xzf $pkgname-$pkgver.tgz || return 1
+}
+
+package() {
+  cd "$srcdir"
+  install -d "$pkgdir/usr/share/$pkgname/"
+  #cp -r * "$pkgdir/usr/share/$pkgname/"
+  install -m 755 jsl-fdedup.py  "$pkgdir/usr/share/$pkgname/"
+}
+md5sums=('9575c702a33532b854caa8610a08f47f')
